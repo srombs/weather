@@ -13,7 +13,7 @@ import dagger.Provides;
 @Module
 public class ApiModule {
 
-    @Provides @Singleton
+    @Provides
     public ApiService providesApiService() {
         return new ApiService();
     }

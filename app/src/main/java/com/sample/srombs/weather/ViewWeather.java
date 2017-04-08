@@ -1,5 +1,6 @@
 package com.sample.srombs.weather;
 
+import com.sample.srombs.weather.model.CurrentWeather;
 import com.sample.srombs.weather.presenter.BaseView;
 
 /**
@@ -11,7 +12,8 @@ public interface ViewWeather extends BaseView {
     void showLoadingIndicator();
     void hideLoadingIndicator();
     void showCurrentLocationWeather();
-    void showZipCodeWeather();
+    void showError();
+    void showZipCodeWeather(CurrentWeather currentWeather);
 
 
 }

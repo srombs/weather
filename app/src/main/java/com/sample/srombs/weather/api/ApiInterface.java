@@ -1,5 +1,8 @@
 package com.sample.srombs.weather.api;
 
+import com.sample.srombs.weather.model.CurrentWeather;
+
+import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -9,5 +12,6 @@ import rx.Observable;
 
 public interface ApiInterface {
 
-    Observable<Object> getCurrentWeatherZipCode(@Query("zip") String zipcode);
+    @GET("/data/2.5/weather?units=imperial")
+    Observable<CurrentWeather> getCurrentWeatherZipCode(@Query("zip") String zipcode, @Query("APPID") String key);
 }

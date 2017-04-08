@@ -16,4 +16,12 @@ public class Main {
     public int humidity;
 
 
+    @Override
+    public String toString() {
+        return "Main{" +
+                "temperature=" + temperature +
+                ", pressure=" + pressure +
+                ", humidity=" + humidity +
+                '}';
+    }
 }
