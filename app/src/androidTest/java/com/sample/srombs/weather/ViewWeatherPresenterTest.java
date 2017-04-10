@@ -11,6 +11,7 @@ import com.sample.srombs.weather.weather.ViewWeather;
 import com.sample.srombs.weather.weather.ViewWeatherPresenter;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
@@ -38,9 +39,12 @@ public class ViewWeatherPresenterTest {
     ViewWeatherPresenter presenter;
     ViewWeather mockView;
 
+    @Rule
+    public RxSchedulersOverrideRule overrideRule = new RxSchedulersOverrideRule();
+
     @Before
     public void setUp() throws Exception {
-        RxJavaHooks.onIOScheduler(Schedulers.immediate());
+//        RxJavaHooks.onIOScheduler(Schedulers.immediate());
 
         Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
 
