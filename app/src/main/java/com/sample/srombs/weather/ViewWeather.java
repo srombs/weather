@@ -11,9 +11,9 @@ public interface ViewWeather extends BaseView {
 
     void showLoadingIndicator();
     void hideLoadingIndicator();
-    void showCurrentLocationWeather();
+    void showCurrentWeather(CurrentWeather currentWeather);
     void showError();
-    void showZipCodeWeather(CurrentWeather currentWeather);
+//    void showZipCodeWeather(CurrentWeather currentWeather);
 
 
 }
