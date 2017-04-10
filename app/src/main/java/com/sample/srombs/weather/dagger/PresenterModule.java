@@ -1,6 +1,6 @@
 package com.sample.srombs.weather.dagger;
 
-import com.sample.srombs.weather.ViewWeatherPresenter;
+import com.sample.srombs.weather.weather.ViewWeatherPresenter;
 import com.sample.srombs.weather.api.ApiService;
 
 import dagger.Module;
@@ -11,8 +11,6 @@ import dagger.Provides;
  */
 @Module
 public class PresenterModule {
-
-    public PresenterModule() {}
 
     @Provides
     public ViewWeatherPresenter providesViewWeather(ApiService apiService) {

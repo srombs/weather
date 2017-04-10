@@ -2,6 +2,9 @@
     <string name="app_name">Weather</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="current_temperature_title">Current temperature:</string>
+    <string name="current_sky_conditions_title">Current conditions:</string>
+    <string name="current_wind_conditions_title">Current Wind conditions:</string>
     <string name="current_temperature">Current temperature: %1$s</string>
     <string name="error_weather_api">There was an error retrieving the weather.</string>
     <string name="current_sky_conditions">Current conditions: %1$s - %2$s</string>

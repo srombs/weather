@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.sample.srombs.weather.dagger.ApiModule;
 import com.sample.srombs.weather.dagger.AppModule;
-import com.sample.srombs.weather.dagger.DaggerDemoComponent;
+import com.sample.srombs.weather.dagger.DaggerApplicationComponent;
 import com.sample.srombs.weather.dagger.DemoComponent;
 import com.sample.srombs.weather.dagger.PresenterModule;
 
@@ -20,16 +20,18 @@ public class WeatherApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        component = DaggerDemoComponent.builder()
+        component = createComponent();
 
+    }
+
+    public DemoComponent createComponent() {
+        component = DaggerApplicationComponent.builder()
                 .apiModule(new ApiModule())
                 .appModule(new AppModule(this))
                 .presenterModule(new PresenterModule())
                 .build();
 
-        component.inject(this);
-
-
+        return component;
     }
 
     public DemoComponent getComponent() {

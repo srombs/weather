@@ -1,10 +1,10 @@
 package com.sample.srombs.weather;
 
 import android.Manifest;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.sample.srombs.weather.weather.ViewWeatherFragment;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import timber.log.Timber;

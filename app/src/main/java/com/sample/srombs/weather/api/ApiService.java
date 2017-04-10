@@ -15,10 +15,10 @@ public class ApiService {
     ApiInterface api;
 
 
-
     public ApiService() {
         setup();
     }
+
 
     private void setup() {
 
@@ -43,6 +43,10 @@ public class ApiService {
 
     public ApiInterface getApi() {
         return api;
+    }
+
+    public void setApi(ApiInterface apiInterface) {
+        this.api = apiInterface;
     }
 
 
