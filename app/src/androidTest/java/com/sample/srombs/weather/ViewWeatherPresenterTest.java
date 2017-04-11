@@ -5,7 +5,6 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.sample.srombs.weather.api.ApiInterface;
-import com.sample.srombs.weather.api.ApiService;
 import com.sample.srombs.weather.model.CurrentWeather;
 import com.sample.srombs.weather.weather.ViewWeather;
 import com.sample.srombs.weather.weather.ViewWeatherPresenter;
@@ -33,7 +32,7 @@ import static org.mockito.Mockito.when;
 public class ViewWeatherPresenterTest {
 
     @Inject
-    ApiService apiService;
+    ApiInterface api;
 
     ViewWeatherPresenter presenter;
     ViewWeather mockView;
@@ -43,26 +42,22 @@ public class ViewWeatherPresenterTest {
 
     @Before
     public void setUp() throws Exception {
-//        RxJavaHooks.onIOScheduler(Schedulers.immediate());
-
         Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
 
         WeatherApplication app = (WeatherApplication) instrumentation.getTargetContext().getApplicationContext();
         TestingComponent component = (TestingComponent) app.getComponent();
         component.inject(this);
 
-        presenter = new ViewWeatherPresenter(apiService);
+        presenter = new ViewWeatherPresenter(api);
         mockView = mock(ViewWeather.class);
         presenter.onAttach(mockView);
-
-        when(apiService.getApi()).thenReturn(mock(ApiInterface.class));
 
     }
 
     @Test
     public void showShouldCurrentWeather() {
 
-        when(apiService.getApi().getCurrentWeatherZipCode(anyString(), anyString())).thenReturn(Observable.just(setupSuccessCurrentWeather()));
+        when(api.getCurrentWeatherZipCode(anyString(), anyString())).thenReturn(Observable.just(setupSuccessCurrentWeather()));
 
         presenter.loadCurrentWeatherByZip("10001");
 
@@ -76,7 +71,7 @@ public class ViewWeatherPresenterTest {
 
     @Test
     public void showShowCurrentWeatherError() {
-        when(apiService.getApi().getCurrentWeatherZipCode(anyString(), anyString())).thenReturn(Observable.error(new Exception()));
+        when(api.getCurrentWeatherZipCode(anyString(), anyString())).thenReturn(Observable.error(new Exception()));
 
         presenter.loadCurrentWeatherByZip("10001");
 

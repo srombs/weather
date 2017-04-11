@@ -1,5 +1,7 @@
 package com.sample.srombs.weather.api;
 
+import javax.inject.Inject;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -13,10 +15,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiService {
 
     ApiInterface api;
+//    OkHttpClient client;
+//    Retrofit retrofit;
 
 
-    public ApiService() {
-        setup();
+    @Inject
+    public ApiService(ApiInterface api) {
+//        this.client = client;
+//        this.retrofit = retrofit;
+        this.api = api;
+//        setup();
     }
 
 

@@ -126,7 +126,7 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
         String temperature = String.valueOf(currentWeather.main.getTemperature());
         String mainCondition = currentWeather.weather.get(0).mainConditions;
         String description = currentWeather.weather.get(0).description;
-        String windSpeed = String.valueOf(currentWeather.wind.speed);
+        String windSpeed = String.valueOf(currentWeather.wind.getSpeed());
         currentTemp.setText(getString(R.string.current_temperature, temperature));
         currentClouds.setText(getString(R.string.current_sky_conditions, mainCondition, description));
         currentWind.setText(getString(R.string.current_wind_conditions, windSpeed));
