@@ -19,12 +19,11 @@ import org.mockito.Matchers;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.plugins.RxJavaHooks;
-import rx.schedulers.Schedulers;
 
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 /**
@@ -70,6 +69,21 @@ public class ViewWeatherPresenterTest {
         verify(mockView).showLoadingIndicator();
         verify(mockView).showCurrentWeather(Matchers.any(CurrentWeather.class));
         verify(mockView).hideLoadingIndicator();
+        verifyNoMoreInteractions(mockView);
+
+    }
+
+
+    @Test
+    public void showShowCurrentWeatherError() {
+        when(apiService.getApi().getCurrentWeatherZipCode(anyString(), anyString())).thenReturn(Observable.error(new Exception()));
+
+        presenter.loadCurrentWeatherByZip("10001");
+
+        verify(mockView).showLoadingIndicator();
+        verify(mockView).showError();
+        verify(mockView).hideLoadingIndicator();
+        verifyNoMoreInteractions(mockView);
 
     }
 
