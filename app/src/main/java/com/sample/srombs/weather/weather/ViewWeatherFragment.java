@@ -27,6 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.charmas.android.reactivelocation.ReactiveLocationProvider;
 import rx.Observable;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
@@ -56,6 +57,8 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
 
     @BindView(R.id.loading_indicator)
     ProgressBar loadingIndicator;
+
+    Subscription gpsSubscription;
 
     public ViewWeatherFragment() {
         // Required empty public constructor
@@ -94,6 +97,14 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(gpsSubscription != null) {
+            gpsSubscription.unsubscribe();
+        }
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
     }
@@ -127,7 +138,7 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
 
     private void location() {
 
-        getGps()
+        gpsSubscription = getGps()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(location -> {
                     presenter.loadCurrentWeatherByGps(location);

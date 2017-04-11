@@ -10,6 +10,7 @@ import com.sample.srombs.weather.presenter.BasePresenter;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
@@ -23,6 +24,8 @@ public class ViewWeatherPresenter extends BasePresenter<ViewWeather> {
     ViewWeather view;
     ApiService api;
 
+    Subscription zipCodeSubscription, gpsSubscription;
+
     @Inject
     public ViewWeatherPresenter(ApiService api) {
         this.api = api;
@@ -35,12 +38,17 @@ public class ViewWeatherPresenter extends BasePresenter<ViewWeather> {
 
     @Override
     public void onDetach() {
-
+        if(zipCodeSubscription != null) {
+            zipCodeSubscription.unsubscribe();
+        }
+        if(gpsSubscription != null) {
+            gpsSubscription.unsubscribe();
+        }
     }
 
     public void loadCurrentWeatherByZip(String zipcode) {
         view.showLoadingIndicator();
-        getZipcodeWeather(zipcode)
+        zipCodeSubscription = getZipcodeWeather(zipcode)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(currentWeather -> {
@@ -55,7 +63,7 @@ public class ViewWeatherPresenter extends BasePresenter<ViewWeather> {
 
     public void loadCurrentWeatherByGps(Location location) {
         view.showLoadingIndicator();
-        getGpsWeather(location)
+        gpsSubscription = getGpsWeather(location)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(currentWeather -> {
