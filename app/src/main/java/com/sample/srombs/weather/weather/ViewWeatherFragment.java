@@ -99,6 +99,8 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        presenter.onDetach();
+
         if(gpsSubscription != null) {
             gpsSubscription.unsubscribe();
         }
