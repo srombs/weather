@@ -78,12 +78,12 @@ public class ViewWeatherPresenter extends BasePresenter<ViewWeather> {
 
     @RxLogObservable
     public Observable<CurrentWeather> getZipcodeWeather(String zipcode) {
-        return api.getCurrentWeatherZipCode(zipcode, "60cd6928576e8b913b16da027feac101");
+        return api.getCurrentWeatherZipCode(zipcode);
     }
 
     @RxLogObservable
     public Observable<CurrentWeather> getGpsWeather(Location location) {
-        return api.getCurrentWeatherGps((float) location.getLongitude(), (float) location.getLatitude(), "60cd6928576e8b913b16da027feac101");
+        return api.getCurrentWeatherGps((float) location.getLongitude(), (float) location.getLatitude());
     }
 
 

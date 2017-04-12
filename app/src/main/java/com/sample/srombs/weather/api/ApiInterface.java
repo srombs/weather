@@ -13,8 +13,8 @@ import rx.Observable;
 public interface ApiInterface {
 
     @GET("/data/2.5/weather?units=imperial")
-    Observable<CurrentWeather> getCurrentWeatherZipCode(@Query("zip") String zipcode, @Query("APPID") String key);
+    Observable<CurrentWeather> getCurrentWeatherZipCode(@Query("zip") String zipcode);
 
     @GET("/data/2.5/weather?units=imperial")
-    Observable<CurrentWeather> getCurrentWeatherGps(@Query("lon") float lon, @Query("lat") float lat, @Query("APPID") String key);
+    Observable<CurrentWeather> getCurrentWeatherGps(@Query("lon") float lon, @Query("lat") float lat);
 }

@@ -1,6 +1,7 @@
 package com.sample.srombs.weather.dagger;
 
 import com.sample.srombs.weather.api.ApiInterface;
+import com.sample.srombs.weather.api.AuthenticationInterceptor;
 
 import javax.inject.Singleton;
 
@@ -30,6 +31,7 @@ public class ApiModule {
     @Provides
     public OkHttpClient providesOkHttpClient(HttpLoggingInterceptor logging) {
         OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new AuthenticationInterceptor())
                 .addInterceptor(logging)
                 .build();
 
