@@ -1,7 +1,6 @@
 package com.sample.srombs.weather.dagger;
 
 import com.sample.srombs.weather.api.ApiInterface;
-import com.sample.srombs.weather.api.ApiService;
 
 import javax.inject.Singleton;
 

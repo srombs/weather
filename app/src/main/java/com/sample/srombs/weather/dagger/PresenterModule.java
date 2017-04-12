@@ -2,7 +2,6 @@ package com.sample.srombs.weather.dagger;
 
 import com.sample.srombs.weather.api.ApiInterface;
 import com.sample.srombs.weather.weather.ViewWeatherPresenter;
-import com.sample.srombs.weather.api.ApiService;
 
 import dagger.Module;
 import dagger.Provides;
