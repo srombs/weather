@@ -37,6 +37,7 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
 
     @Inject
     ViewWeatherPresenter presenter;
+
     @BindView(R.id.submit_zipcode_btn)
     Button submitBtn;
 
@@ -60,6 +61,7 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
 
     Subscription gpsSubscription;
 
+
     public ViewWeatherFragment() {
         // Required empty public constructor
     }
@@ -76,6 +78,8 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
         presenter.onAttach(this);
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,6 +88,7 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
 
         ButterKnife.bind(this, rootView);
 
+
         submitBtn.setOnClickListener(v -> {
             presenter.loadCurrentWeatherByZip(zipInput.getText().toString());
         });
@@ -91,7 +96,6 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
         gpsBtn.setOnClickListener(v -> {
             location();
         });
-
 
         return rootView;
     }
@@ -110,6 +114,8 @@ public class ViewWeatherFragment extends Fragment implements ViewWeather {
     public void onDetach() {
         super.onDetach();
     }
+
+
 
     @Override
     public void showLoadingIndicator() {

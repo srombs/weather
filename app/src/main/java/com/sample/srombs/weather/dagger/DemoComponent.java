@@ -8,7 +8,6 @@ import com.sample.srombs.weather.weather.ViewWeatherPresenter;
  * Created by srombs on 4/6/17.
  */
 public interface DemoComponent {
-
     void inject(MainActivity target);
     void inject(ViewWeatherFragment target);
     void inject(ViewWeatherPresenter target);

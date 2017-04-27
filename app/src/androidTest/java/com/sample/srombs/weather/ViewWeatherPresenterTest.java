@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 
 import javax.inject.Inject;
@@ -34,7 +35,9 @@ public class ViewWeatherPresenterTest {
     @Inject
     ApiInterface api;
 
+    @Inject
     ViewWeatherPresenter presenter;
+
     ViewWeather mockView;
 
     @Rule
@@ -48,8 +51,8 @@ public class ViewWeatherPresenterTest {
         TestingComponent component = (TestingComponent) app.getComponent();
         component.inject(this);
 
-        presenter = new ViewWeatherPresenter(api);
         mockView = mock(ViewWeather.class);
+        presenter = new ViewWeatherPresenter(api);
         presenter.onAttach(mockView);
 
     }
@@ -57,7 +60,7 @@ public class ViewWeatherPresenterTest {
     @Test
     public void showShouldCurrentWeather() {
 
-        when(api.getCurrentWeatherZipCode(anyString(), anyString())).thenReturn(Observable.just(setupSuccessCurrentWeather()));
+        when(api.getCurrentWeatherZipCode(anyString())).thenReturn(Observable.just(setupSuccessCurrentWeather()));
 
         presenter.loadCurrentWeatherByZip("10001");
 
@@ -71,7 +74,7 @@ public class ViewWeatherPresenterTest {
 
     @Test
     public void showShowCurrentWeatherError() {
-        when(api.getCurrentWeatherZipCode(anyString(), anyString())).thenReturn(Observable.error(new Exception()));
+        when(api.getCurrentWeatherZipCode(anyString())).thenReturn(Observable.error(new Exception()));
 
         presenter.loadCurrentWeatherByZip("10001");
 
